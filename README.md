@@ -48,6 +48,7 @@ Note: I was not able to create a Hive / Presto instance, as described in [Challe
     * [./airflow/dags/pyspark_scripts/get_fire_incidents_api_data.py](./airflow/dags/pyspark_scripts/get_fire_incidents_api_data.py): PySpark job that import data from the API and save into MinIO formatted as parquet partitioned files.
 * Visualization related files:
     * [./powerbi/powerbi_script.py](./powerbi/powerbi_script.py): Script used to get information from the parquet files in MinIO and load into PowerBI for reporting.
+    * [./powerbi/dashboard.pbix](./powerbi/dashboard.pbix): PowerBI dashboard with the data connection and super simple visualizations.
 
 ### How to run the code
 #### Requirements
