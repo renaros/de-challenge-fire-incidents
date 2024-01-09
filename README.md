@@ -18,7 +18,7 @@ A customer has the need to analyze a dataset of fire incidents in the city of Sa
 
 ## Proposed Architecture Overview
 Here is an overview about the proposed architecture:
-![Proposed architecture](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/proposed-architecture.jpg)
+![Proposed architecture](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/proposed-architecture.jpg)
 
 * _Orchestration_: This layer is responsible for job scheduling and can be achieved using Apache Airflow, Glue or any similar tool - for this exercise I'm using Airflow.
 * _Processing_: The data provided by the API is not huge, but considering a scenario where we need to scale the processing, distributed processing becomes very relevant. That's why I thought about using Spark (via PySpark) as the processing layer.
@@ -107,6 +107,14 @@ In your PowerBI desktop:
 * Ensure you have your docker in WSL running and some files loaded into MinIO
 * Check the credentials in [./powerbi/powerbi_script.py](./powerbi/powerbi_script.py), they should match with the ones used in your docker compose file 
 
+1. Create a new connection using Python script as a source
+![PowerBI get data 1](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/powerbi-get-data1.jpg)
+2. Copy the [./powerbi/powerbi_script.py](./powerbi/powerbi_script.py) script, paste into the popup and click OK
+![PowerBI get data 2](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/powerbi-get-data2.jpg)
+3. Check the `combined_df` checkbox and hit Load
+![PowerBI get data 3](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/powerbi-get-data3.jpg)
+4. Use the loaded data from MinIO to create your dashboard
+![PowerBI get data 4](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/powerbi-get-data4.jpg)
 
 ## Challenges during development
 * I wasn't able to have a separate environment for Spark due to limitations with my computer :/
