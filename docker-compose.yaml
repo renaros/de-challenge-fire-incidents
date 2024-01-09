@@ -82,7 +82,7 @@ services:
       - "8793:8793"
     networks:
       - de-challenge-network
-
+  
 volumes:
   airflow-logs-volume:
   airflow-plugins-volume:
