@@ -75,11 +75,11 @@ _Windows environment:_
 
 3. Wait until all steps are green (except the pink one that is skipped because we are following the daily processing path).
 
-![Airflow all green](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/airflow-all-green.jpg)
+![Airflow all green](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/airflow-all-green.jpg)
 
 4. Access your MinIO instance using the link [http://localhost:9091](http://localhost:9091), providing your credentials (that should be set in your `.env` file). Access your [http://localhost:9001/browser/de-challenge](bucket details) and you should see a folder `fire_incidents`. Inside this folder you should see another folder with the current day and a `_SUCCESS` file (there's no parquet file because the API doesn't provide daily information).
 
-![Minio folder](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/minio-folder.jpg)
+![Minio folder](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/minio-folder.jpg)
 
 ##### Processing one specific day
 There's one easy way to backfill previous specific days by using `airflow tasks test` command.
@@ -87,7 +87,7 @@ In your Ubuntu terminal, type:
 `docker exec -it airflow-webserver airflow tasks test dag_load_fire_incidents save_api_daily_results 'YYYY-MM-DD'`, where YYYY-MM-DD should be the date you want to backfill.
 After running this command, you should see a `_SUCCESS` file and your parquet files created in your MinIO instance.
 
-![Minio backfilled](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/minio-backfilled.jpg)
+![Minio backfilled](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/minio-backfilled.jpg)
 
 ##### Processing full history (warning! it takes a long time)
 You can process the whole historical information (currently with ~650k entries) by triggering the DAG with parameters.
@@ -108,13 +108,13 @@ In your PowerBI desktop:
 * Check the credentials in [./powerbi/powerbi_script.py](./powerbi/powerbi_script.py), they should match with the ones used in your docker compose file 
 
 1. Create a new connection using Python script as a source
-![PowerBI get data 1](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/powerbi-get-data1.jpg)
+![PowerBI get data 1](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/powerbi-get-data1.jpg)
 2. Copy the [./powerbi/powerbi_script.py](./powerbi/powerbi_script.py) script, paste into the popup and click OK
-![PowerBI get data 2](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/powerbi-get-data2.jpg)
+![PowerBI get data 2](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/powerbi-get-data2.jpg)
 3. Check the `combined_df` checkbox and hit Load
-![PowerBI get data 3](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/powerbi-get-data3.jpg)
+![PowerBI get data 3](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/powerbi-get-data3.jpg)
 4. Use the loaded data from MinIO to create your dashboard
-![PowerBI get data 4](https://github.com/renaros/de-challenge-invoices/blob/main/readme_images/powerbi-get-data4.jpg)
+![PowerBI get data 4](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/powerbi-get-data4.jpg)
 
 ## Challenges during development
 * I wasn't able to have a separate environment for Spark due to limitations with my computer :/
