@@ -52,7 +52,7 @@ Note: I was not able to create a Hive / Presto instance, as described in [Challe
 
 ### How to run the code
 #### Requirements
-* [https://docs.docker.com/compose/install/](Docker compose)
+* [Docker compose](https://docs.docker.com/compose/install/)
 * [https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/](Python3 virtual environment (venv))
 * Java (I'm using OpenJDK 11.0.21)
 * PowerBI
