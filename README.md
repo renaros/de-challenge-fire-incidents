@@ -53,7 +53,7 @@ Note: I was not able to create a Hive / Presto instance, as described in [Challe
 ### How to run the code
 #### Requirements
 * [Docker compose](https://docs.docker.com/compose/install/)
-* [https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/](Python3 virtual environment (venv))
+* [Python3 virtual environment (venv)](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/)
 * Java (I'm using OpenJDK 11.0.21)
 * PowerBI
 Note: I used WSL to create the environment in a Ubuntu distro image and connected PowerBI using my Windows machine, so Python must be installed in both environments.
@@ -76,7 +76,7 @@ _Windows environment:_
 
 3. Wait until all steps are green (except the pink one that is skipped because we are following the daily processing path).
 
-![Airflow all green](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/airflow-all-green.jpg)
+![Airflow all green](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/airflow-all-green.JPG)
 
 4. Access your MinIO instance using the link [http://localhost:9091](http://localhost:9091), providing your credentials (that should be set in your `.env` file). Access your [http://localhost:9001/browser/de-challenge](bucket details) and you should see a folder `fire_incidents`. Inside this folder you should see another folder with the current day and a `_SUCCESS` file (there's no parquet file because the API doesn't provide daily information).
 
@@ -88,11 +88,11 @@ In your Ubuntu terminal, type:
 `docker exec -it airflow-webserver airflow tasks test dag_load_fire_incidents save_api_daily_results 'YYYY-MM-DD'`, where YYYY-MM-DD should be the date you want to backfill.
 After running this command, you should see a `_SUCCESS` file and your parquet files created in your MinIO instance.
 
-![Minio backfilled](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/minio-backfilled.jpg)
+![Minio backfilled](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/minio-backfilled.JPG)
 
 ##### Processing full history (warning! it takes a long time)
 You can process the whole historical information (currently with ~650k entries) by triggering the DAG with parameters.
-1. Access the [http://localhost:8080/dags/dag_load_fire_incidents/grid](dag_load_fire_incidents DAG details)
+1. Access the [dag_load_fire_incidents DAG details](http://localhost:8080/dags/dag_load_fire_incidents/grid)
 2. On the play bottom on the top left, select "Trigger DAG w/ config"
 3. Insert the JSON `{"is_historical_processing": true}` in the "Configuration JSON (Optional, must be a dict object)" and click the button Trigger in the bottom left.
 4. Wait until all the steps are green to have all the information loaded.
@@ -109,7 +109,7 @@ In your PowerBI desktop:
 * Check the credentials in [./powerbi/powerbi_script.py](./powerbi/powerbi_script.py), they should match with the ones used in your docker compose file 
 
 1. Create a new connection using Python script as a source
-![PowerBI get data 1](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/powerbi-get-data1.jpg)
+![PowerBI get data 1](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/powerbi-get-data1.JPG)
 2. Copy the [./powerbi/powerbi_script.py](./powerbi/powerbi_script.py) script, paste into the popup and click OK
 ![PowerBI get data 2](https://github.com/renaros/de-challenge-fire-incidents/blob/main/readme_images/powerbi-get-data2.jpg)
 3. Check the `combined_df` checkbox and hit Load
